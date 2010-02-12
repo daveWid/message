@@ -13,17 +13,17 @@ _type_: Use a constant that can be found below
 _message_:  A message string or array of message strings
 
 When you need to get a message you can:
-echo Message::display(); or
-echo Message::render();
+	echo Message::display(); or
+	echo Message::render();
 
 ## Messages
 
 There are 4 constants you can use to set a message
 --
-Message.ERROR = 'error'
-Message.SUCCESS = 'success'
-Message.NOTICE = 'notice'
-Message.WARN = 'warn'
+	Message.ERROR = 'error'
+	Message.SUCCESS = 'success'
+	Message.NOTICE = 'notice'
+	Message.WARN = 'warn'
 
 ## Style
 The message class produces the following code by default
