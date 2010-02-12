@@ -19,7 +19,7 @@ When you need to get a message you can:
 ## Messages
 
 There are 4 constants you can use to set a message
---
+
 	Message.ERROR = 'error'
 	Message.SUCCESS = 'success'
 	Message.NOTICE = 'notice'
@@ -52,5 +52,5 @@ I get the most mileage from this class when validating forms. Here is a quick ex
 	else
 	{
 		// Validation failed
-		Message::set( Message.ERROR, $validation->errors('_form_');
+		Message::set( Message::ERROR, $validation->errors('_form_');
 	}
