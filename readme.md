@@ -9,12 +9,12 @@ To set a flash message all it takes is the following
 
 Message::set( _type_, _message_ );
 
-## Connivence methods
+## Wrapper methods
 There are also methods that are wrappers for the different types of messages
-Message::error(_message_)
-Message::success(_message_)
-Message::notice(_message_)
-Message::warn(_message_)
+	Message::error(_message_)
+	Message::success(_message_)
+	Message::notice(_message_)
+	Message::warn(_message_)
 
 _type_: Use a constant that can be found below   
 _message_:  A message string or array of message strings
