@@ -100,4 +100,48 @@ class Message_Core
 		Session::instance()->set('flash_message', new Message($type, $message));
 	}
 
+	/**
+	 * Sets an error message.
+	 *
+	 * @param	mixed	String/Array for the message(s)
+	 * @return	void
+	 */
+	public static function error($message)
+	{
+		self::set(Message::ERROR, $message);
+	}
+
+	/**
+	 * Sets a notice.
+	 *
+	 * @param	mixed	String/Array for the message(s)
+	 * @return	void
+	 */
+	public static function notice($message)
+	{
+		self::set(Message::NOTICE, $message);
+	}
+
+	/**
+	 * Sets a success message.
+	 *
+	 * @param	mixed	String/Array for the message(s)
+	 * @return	void
+	 */
+	public static function success($message)
+	{
+		self::set(Message::SUCCESS, $message);
+	}
+
+	/**
+	 * Sets a warning message.
+	 *
+	 * @param	mixed	String/Array for the message(s)
+	 * @return	void
+	 */
+	public static function warn($message)
+	{
+		self::set(Message::WARN, $message);
+	}
+
 }
