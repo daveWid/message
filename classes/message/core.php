@@ -57,7 +57,7 @@ class Message_Core
 	 * @param   string  Filename of view to render
 	 * @return	string	Message to string
 	 */
-	public function display($view = NULL)
+	public static function display($view = NULL)
 	{
 		if ($view === NULL)
 		{
