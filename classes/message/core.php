@@ -54,16 +54,25 @@ class Message_Core
 	/**
 	 * Displays the message
 	 *
+	 * @param   string  Filename of view to render
 	 * @return	string	Message to string
 	 */
-	public static function display()
+	public function display($view = NULL)
 	{
+		if ($view === NULL)
+		{
+			$view = 'message/basic';
+		}
+
 		$msg = self::get();
 
-		if( $msg ){
+		if ($msg)
+		{
 			self::clear();
-			return View::factory('message/basic')->set('message', $msg)->render();
-		} else	{
+			return View::factory($view)->set('message', $msg)->render();
+		}
+		else
+		{
 			return '';
 		}
 	}
