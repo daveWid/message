@@ -30,6 +30,11 @@ class Message_Core
 	public $type;
 
 	/**
+	 * @var  string  Default message display view.
+	 */
+	public static $default = 'message/basic';
+
+	/**
 	 * Creates a new Falcon_Message instance.
 	 *
 	 * @param	string	Type of message
@@ -61,7 +66,7 @@ class Message_Core
 	{
 		if ($view === NULL)
 		{
-			$view = 'message/basic';
+			$view = Message::$default;
 		}
 
 		$msg = self::get();
