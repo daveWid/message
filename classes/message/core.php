@@ -3,11 +3,11 @@
  * Message is a class that lets you easily send messages
  * in your application (aka Flash Messages)
  *
- * @package	Message
- * @author	Dave Widmer
- * @see	http://github.com/daveWid/message
- * @see	http://www.davewidmer.net
- * @copyright	2010 © Dave Widmer
+ * @package    Message
+ * @author     Dave Widmer
+ * @see        http://github.com/daveWid/message
+ * @see        http://www.davewidmer.net
+ * @copyright  2010-2011 © Dave Widmer
  */
 class Message_Core
 {
@@ -20,20 +20,20 @@ class Message_Core
 	const WARN = 'warn';
 
 	/**
-	 * @var	mixed	The message to display.
+	 * @var  mixed    The message to display.
 	 */
 	public $message;
 
 	/**
-	 * @var	string	The type of message.
+	 * @var  string   The type of message.
 	 */
 	public $type;
 
 	/**
-	 * Creates a new Falcon_Message instance.
+	 * Creates a new Message instance.
 	 *
-	 * @param	string	Type of message
-	 * @param	mixed	Message to display, either string or array
+	 * @param   string   Type of message
+	 * @param   mixed    Message to display, either string or array
 	 */
 	public function __construct($type, $message)
 	{
@@ -42,9 +42,7 @@ class Message_Core
 	}
 
 	/**
-	 * Clears the message from the session
-	 *
-	 * @return	void
+	 * Clears the message from the session.
 	 */
 	public static function clear()
 	{
@@ -52,26 +50,28 @@ class Message_Core
 	}
 
 	/**
-	 * Displays the message
+	 * Displays the message.
 	 *
-	 * @return	string	Message to string
+	 * @return   string    Message to string
 	 */
 	public static function display()
 	{
+		$html = "";
 		$msg = self::get();
 
-		if( $msg ){
+		if($msg)
+		{
 			self::clear();
-			return View::factory('message/basic')->set('message', $msg)->render();
-		} else	{
-			return '';
+			$html = View::factory('message/basic')->set('message', $msg)->render();
 		}
+
+		return $html;
 	}
 
 	/**
-	 * The same as display - used to mold to Kohana standards
+	 * The same as display - used to mold to Kohana standards.
 	 *
-	 * @return	string	HTML for message
+	 * @return   string    HTML for message
 	 */
 	public static function render()
 	{
@@ -81,7 +81,7 @@ class Message_Core
 	/**
 	 * Gets the current message.
 	 *
-	 * @return	mixed	The message or FALSE
+	 * @return   mixed    The message or FALSE
 	 */
 	public static function get()
 	{
@@ -91,9 +91,8 @@ class Message_Core
 	/**
 	 * Sets a message.
 	 *
-	 * @param	string	Type of message
-	 * @param	mixed	Array/String for the message
-	 * @return	void
+	 * @param   string   Type of message
+	 * @param   mixed    Array/String for the message
 	 */
 	public static function set($type, $message)
 	{
@@ -103,8 +102,7 @@ class Message_Core
 	/**
 	 * Sets an error message.
 	 *
-	 * @param	mixed	String/Array for the message(s)
-	 * @return	void
+	 * @param    mixed    String/Array for the message(s)
 	 */
 	public static function error($message)
 	{
@@ -114,8 +112,7 @@ class Message_Core
 	/**
 	 * Sets a notice.
 	 *
-	 * @param	mixed	String/Array for the message(s)
-	 * @return	void
+	 * @param    mixed    String/Array for the message(s)
 	 */
 	public static function notice($message)
 	{
@@ -125,8 +122,7 @@ class Message_Core
 	/**
 	 * Sets a success message.
 	 *
-	 * @param	mixed	String/Array for the message(s)
-	 * @return	void
+	 * @param    mixed    String/Array for the message(s)
 	 */
 	public static function success($message)
 	{
@@ -136,8 +132,7 @@ class Message_Core
 	/**
 	 * Sets a warning message.
 	 *
-	 * @param	mixed	String/Array for the message(s)
-	 * @return	void
+	 * @param    mixed    String/Array for the message(s)
 	 */
 	public static function warn($message)
 	{
