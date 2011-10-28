@@ -14,15 +14,10 @@ class Message_Core
 	/**
 	 * Constants to use for the types of messages that can be set.
 	 */
-	const ERROR = 'error';
-	const NOTICE = 'notice';
+	const ERROR   = 'error';
+	const NOTICE  = 'notice';
 	const SUCCESS = 'success';
-	const WARN = 'warn';
-
-	/**
-	 * @var	mixed	The message to display.
-	 */
-	public $message;
+	const WARN    = 'warn';
 
 	/**
 	 * @var	string	The type of message.
@@ -30,15 +25,30 @@ class Message_Core
 	public $type;
 
 	/**
+	 * @var	mixed	The message to display.
+	 */
+	public $content;
+
+	/**
+	 * @var  string  Default message display view.
+	 */
+	public static $default = 'message/basic';
+
+	/**
 	 * Creates a new Falcon_Message instance.
 	 *
 	 * @param	string	Type of message
 	 * @param	mixed	Message to display, either string or array
 	 */
-	public function __construct($type, $message)
+	public function __construct($type, $content)
 	{
-		$this->type = $type;
-		$this->message = $message;
+		$this->type    = $type;
+		$this->content = $content;
+	}
+
+	public static function factory($type, $content)
+	{
+		return new Message($type, $content);
 	}
 
 	/**
@@ -54,18 +64,23 @@ class Message_Core
 	/**
 	 * Displays the message
 	 *
+	 * @param   string  Filename of view to render
 	 * @return	string	Message to string
 	 */
-	public static function display()
+	public static function display($view = NULL)
 	{
-		$msg = self::get();
-
-		if( $msg ){
-			self::clear();
-			return View::factory('message/basic')->set('message', $msg)->render();
-		} else	{
-			return '';
+		if ($view === NULL)
+		{
+			$view = Message::$default;
 		}
+
+		$messages = self::get();
+
+		// if (($messages = self::get()) !== NULL)
+		// {
+			self::clear();
+			return View::factory($view, array('messages' => $messages));
+		// }
 	}
 
 	/**
@@ -85,7 +100,7 @@ class Message_Core
 	 */
 	public static function get()
 	{
-		return Session::instance()->get('flash_message', FALSE);
+		return Session::instance()->get('flash_message', array());
 	}
 
 	/**
@@ -95,9 +110,15 @@ class Message_Core
 	 * @param	mixed	Array/String for the message
 	 * @return	void
 	 */
-	public static function set($type, $message)
+	public static function set($type, $content)
 	{
-		Session::instance()->set('flash_message', new Message($type, $message));
+		$session = Session::instance();
+
+		$messages = $session->get('flash_message', array());
+
+		$messages[] = Message::factory($type, $content);
+
+		$session->set('flash_message', $messages);
 	}
 
 	/**
@@ -106,9 +127,9 @@ class Message_Core
 	 * @param	mixed	String/Array for the message(s)
 	 * @return	void
 	 */
-	public static function error($message)
+	public static function error($content)
 	{
-		self::set(Message::ERROR, $message);
+		self::set(Message::ERROR, $content);
 	}
 
 	/**
@@ -117,9 +138,9 @@ class Message_Core
 	 * @param	mixed	String/Array for the message(s)
 	 * @return	void
 	 */
-	public static function notice($message)
+	public static function notice($content)
 	{
-		self::set(Message::NOTICE, $message);
+		self::set(Message::NOTICE, $content);
 	}
 
 	/**
@@ -128,9 +149,9 @@ class Message_Core
 	 * @param	mixed	String/Array for the message(s)
 	 * @return	void
 	 */
-	public static function success($message)
+	public static function success($content)
 	{
-		self::set(Message::SUCCESS, $message);
+		self::set(Message::SUCCESS, $content);
 	}
 
 	/**
@@ -139,9 +160,9 @@ class Message_Core
 	 * @param	mixed	String/Array for the message(s)
 	 * @return	void
 	 */
-	public static function warn($message)
+	public static function warn($content)
 	{
-		self::set(Message::WARN, $message);
+		self::set(Message::WARN, $content);
 	}
 
 }
