@@ -12,6 +12,11 @@
 class Message_Core
 {
 	/**
+	 * @var  string    The default view if one isn't passed into display/render.
+	 */
+	public static $default = "message/basic";
+
+	/**
 	 * Constants to use for the types of messages that can be set.
 	 */
 	const ERROR = 'error';
@@ -52,17 +57,23 @@ class Message_Core
 	/**
 	 * Displays the message.
 	 *
+	 * @param    string    Name of the view
 	 * @return   string    Message to string
 	 */
-	public static function display()
+	public static function display($view = null)
 	{
 		$html = "";
 		$msg = self::get();
 
 		if($msg)
 		{
+			if ($view === null)
+			{
+				$view = self::$default;
+			}
+
 			self::clear();
-			$html = View::factory('message/basic')->set('message', $msg)->render();
+			$html = View::factory($view)->set('message', $msg)->render();
 		}
 
 		return $html;
@@ -71,11 +82,12 @@ class Message_Core
 	/**
 	 * The same as display - used to mold to Kohana standards.
 	 *
+	 * @param    string    Name of the view
 	 * @return   string    HTML for message
 	 */
-	public static function render()
+	public static function render($view = null)
 	{
-		return self::display();
+		return self::display($view);
 	}
 
 	/**
