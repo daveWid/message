@@ -1,0 +1,17 @@
+<phpunit bootstrap="tests/bootstrap.php" colors="true" verbose="true">
+	<testsuites>
+		<testsuite name="Message Test Suite">
+			<directory>tests/</directory>
+		</testsuite>
+	</testsuites>
+
+	<filter>
+		<blacklist>
+			<file>tests/SplClassLoader.php</file>
+		</blacklist>
+	</filter>
+
+	<logging>
+		<log type="coverage-html" target="docs/coverage" charset="utf-8" />
+	</logging>
+</phpunit>
