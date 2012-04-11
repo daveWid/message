@@ -1,65 +1,56 @@
 # Message
 
-A flash messaging system for Kohana v3.0 and higher.
-
-To use, download the source, extract and rename to message. Move that folder into your modules directory and activate in your bootstrap.
+The message library lets you quick implement flash messages into your application.
+You will need php 5.3+ to as this library uses namespaces.
 
 ## Usage
-To set a flash message all it takes is the following
 
-Message::set( _type_, _message_ );
+### Setup
+
+// TODO: fill out
+
+### Getting
+
+To get a message all you need to do is run `get`:
+
+``` php
+<?php
+
+\Message\Message::get();
+```
+
+If no message is found this function will return `false`.
+
+### Setting
+
+To set a flash message all it takes is the following:
+
+``` php
+<?php
+
+\Message\Message::set($type, $message);
+```
+
+### Properties
+
+Name | type | Description
+-----|------|-------------
+type | string | The type of message (this can be anything)
+message | mixed | The message you want to pass along. This can be anything, but a string or array of strings will probably work best
 
 ## Wrapper methods
-There are also methods that are wrappers for the different types of messages
-	Message::error(_message_)
-	Message::success(_message_)
-	Message::notice(_message_)
-	Message::warn(_message_)
 
-_type_: Use a constant that can be found below   
-_message_:  A message string or array of message strings
+There are also methods that are wrappers for the different types of messages.
 
-When you need to get a message you can:
-	echo Message::display(); or
-	echo Message::render();
+``` php
+<?php
 
-## Messages
-
-There are 4 constants you can use to set a message
-
-	Message::ERROR = 'error'
-	Message::NOTICE = 'notice'
-	Message::SUCCESS = 'success'
-	Message::WARN = 'warn'
-
-## Style
-The message class produces the following code by default
-	<ul id="message" class"_type_">
-		<li>_Message_</li>
-		... Repeated if an array
-	</ul>
-
-To style, set #message and the classes for the constants
-.error, .success, .notice, .warn
+\Message\Message::error($message);
+\Message\Message::success($message);
+\Message\Message::notice($message);
+\Message\Message::warn($message);
+```
 
 -----
 
-### Sample Usage
-
-I get the most mileage from this class when validating forms. Here is a quick example.
-
-	$validation = new Validate($_POST);
-	$validation->rule(.....) <-- Add rules
-
-	if( $validation->check() )
-	{
-		// Validation passed
-		Message::success('Form Success!');
-		// OR -> Message::set(Message::SUCCESS, 'Form Success!');
-	}
-	else
-	{
-		// Validation failed
-		Message::error($validation->errors('_form_');
-		// OR -> Message::set(Message::ERROR, $validation->errors('_form_'));
-	}
+Developed by [Dave Widmer](http://www.davewidmer.net).
