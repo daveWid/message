@@ -1,5 +1,2 @@
-# Ignore hidden files
-.*
-
-# Not this
-!.gitignore
+.DS_Store
+docs/*
