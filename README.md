@@ -16,7 +16,8 @@ Once you have your session driver you will need to inject it into the class.
 ``` php
 <?php
 
-$session = new \Message\Session\Kohana; // Assuming Kohana, but anything that implements \Message\ISession will work.
+// Anything that implements \Message\ISession will work.
+$session = new \Message\Session\Kohana;
 \Message\Message::set_session($session);
 ```
 
