@@ -53,4 +53,5 @@ There are also methods that are wrappers for the different types of messages.
 
 -----
 
-Developed by [Dave Widmer](http://www.davewidmer.net).
+The Message library is Licensed under the MIT license. Developed by
+[Dave Widmer](http://www.davewidmer.net).
