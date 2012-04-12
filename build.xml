@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Message" default="package" basedir=".">
+	<property name="version" value="1.1.0" />
+
+	<!-- Packages up the code to be uploaded -->
+	<target name="package">
+		<property name="path" value="docs/packages/Message-${version}.zip" />
+		
+		<delete file="${path}" />
+		<mkdir dir="docs/packages" />
+
+		<!-- Build the zip -->
+		<zip destfile="${path}">
+			<fileset dir="${project.basedir}/">
+				<include name="classes/**" />
+				<include name="README.md" />
+				<include name="LICENSE.md" />
+				<include name="bootstrap.php" />
+			</fileset>
+		</zip>
+	</target>
+</project>
