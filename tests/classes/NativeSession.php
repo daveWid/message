@@ -14,7 +14,7 @@ class NativeSession implements \Message\ISession
 		//session_start();
 	}
 	
-	public function get($name, $default = false)
+	public function get_once($name, $default = false)
 	{
 		$value = $default;
 		

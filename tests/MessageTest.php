@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Testing out the Message test.
+ * Testing out the Message class.
  *
  * @package    Message
  * @author     Dave Widmer <dave@davewidmer.net>
@@ -20,7 +20,7 @@ class MessageTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Running through a messages lifecycle and see if everything works as planned.
+	 * Running through a message's lifecycle and see if everything works as planned.
 	 */
 	public function testLifecycle()
 	{
@@ -29,6 +29,7 @@ class MessageTest extends PHPUnit_Framework_TestCase
 		\Message\Message::error("There was a problem");
 
 		$message = \Message\Message::get();
+		$this->assertInstanceOf("\\Message\\Message", $message);
 		$this->assertSame("There was a problem", $message->message);
 		$this->assertSame('error', $message->type);
 

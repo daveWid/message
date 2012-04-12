@@ -30,35 +30,13 @@ class Message
 	}
 
 	/**
-	 * @var mixed   The message to display.
-	 */
-	public $message;
-
-	/**
-	 * @var string  The type of message.
-	 */
-	public $type;
-
-	/**
-	 * Creates a new Message instance.
-	 *
-	 * @param string $type     Type of message
-	 * @param mixed  $message  Message to display, either string or array
-	 */
-	public function __construct($type, $message)
-	{
-		$this->type = $type;
-		$this->message = $message;
-	}
-
-	/**
 	 * Gets the current message.
 	 *
 	 * @return mixed  The currently stored message or FALSE
 	 */
 	public static function get()
 	{
-		return self::$session->get('flash_message', FALSE);
+		return self::$session->get_once('flash_message', FALSE);
 	}
 
 	/**
@@ -110,6 +88,28 @@ class Message
 	public static function warn($message)
 	{
 		self::set('warn', $message);
+	}
+
+	/**
+	 * @var mixed   The message to display.
+	 */
+	public $message;
+
+	/**
+	 * @var string  The type of message.
+	 */
+	public $type;
+
+	/**
+	 * Creates a new Message instance.
+	 *
+	 * @param string $type     Type of message
+	 * @param mixed  $message  Message to display, either string or array
+	 */
+	public function __construct($type, $message)
+	{
+		$this->type = $type;
+		$this->message = $message;
 	}
 
 }

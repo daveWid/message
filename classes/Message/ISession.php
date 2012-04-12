@@ -23,7 +23,7 @@ interface ISession
 	 * @param  mixed  $default  The default value
 	 * @return mixed            The property or default value
 	 */
-	public function get($name, $default = false);
+	public function get_once($name, $default = false);
 
 	/**
 	 * Sets a session value.
